@@ -30,10 +30,10 @@ const Hero = ({ onApplyClick }: HeroProps) => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
           <button onClick={onApplyClick} className="btn-primary">
-            Get Started
+            APPLY NOW
           </button>
-          <a href="#about" className="btn-outline">
-            Learn More
+          <a href="#contact" className="btn-outline">
+            CONTACT US
           </a>
         </div>
       </div>
