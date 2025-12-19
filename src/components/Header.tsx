@@ -31,13 +31,13 @@ const Header = ({ onApplyClick }: HeaderProps) => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-primary shadow-lg py-2"
-          : "bg-primary/95 py-4"
+          ? "bg-primary shadow-lg py-1"
+          : "bg-primary/95 py-2"
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <a href="#home" className="flex items-center">
-          <img src={logo} alt="Goldrock Funding" className="h-12 md:h-14 w-auto" />
+          <img src={logo} alt="Goldrock Funding" className="h-14 md:h-16 w-auto" />
         </a>
 
         {/* Desktop Navigation */}

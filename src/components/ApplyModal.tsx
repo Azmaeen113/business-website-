@@ -16,6 +16,10 @@ interface FormData {
   annualSales: string;
   creditScore: string;
   companyName: string;
+  companyAddress: string;
+  ein: string;
+  companyEmail: string;
+  companyPhone: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -36,6 +40,10 @@ const ApplyModal = ({ isOpen, onClose }: ApplyModalProps) => {
     annualSales: "",
     creditScore: "",
     companyName: "",
+    companyAddress: "",
+    ein: "",
+    companyEmail: "",
+    companyPhone: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -58,13 +66,66 @@ const ApplyModal = ({ isOpen, onClose }: ApplyModalProps) => {
   const handleSubmit = async () => {
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      // Prepare email body with all form data
+      const emailBody = `
+NEW FUNDING APPLICATION
+========================
 
-    toast({
-      title: "Application Submitted!",
-      description: "Thank you! We'll contact you shortly.",
-    });
+TIME IN BUSINESS
+${formData.timeInBusiness}
+
+FUNDING PURPOSE
+${formData.fundingPurpose.join(', ')}
+
+FUNDING AMOUNT
+$${parseInt(formData.fundingAmount || "0").toLocaleString()}
+
+ANNUAL SALES
+${formData.annualSales}
+
+CREDIT SCORE
+${formData.creditScore}
+
+COMPANY INFORMATION
+-------------------
+Company Name: ${formData.companyName}
+Company Address: ${formData.companyAddress}
+EIN: ${formData.ein}
+Company Email: ${formData.companyEmail}
+Company Phone: ${formData.companyPhone}
+
+CONTACT INFORMATION
+-------------------
+Name: ${formData.firstName} ${formData.lastName}
+Personal Email: ${formData.email}
+Personal Phone: ${formData.phone}
+
+Terms Agreed: ${formData.agreedToTerms ? 'Yes' : 'No'}
+      `.trim();
+
+      // Create mailto link with all information
+      const subject = encodeURIComponent(`New Funding Application - ${formData.companyName}`);
+      const body = encodeURIComponent(emailBody);
+      const mailtoLink = `mailto:Loans@GoldRockFunding.com?subject=${subject}&body=${body}`;
+      
+      // Open default email client
+      window.location.href = mailtoLink;
+
+      // Small delay to ensure mailto opens
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      toast({
+        title: "Application Submitted!",
+        description: "Your email client has been opened. Please send the email to complete your application.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was an issue submitting your application. Please try again.",
+        variant: "destructive",
+      });
+    }
 
     setIsSubmitting(false);
     setTimeout(() => {
@@ -77,6 +138,10 @@ const ApplyModal = ({ isOpen, onClose }: ApplyModalProps) => {
         annualSales: "",
         creditScore: "",
         companyName: "",
+        companyAddress: "",
+        ein: "",
+        companyEmail: "",
+        companyPhone: "",
         firstName: "",
         lastName: "",
         email: "",
@@ -99,7 +164,11 @@ const ApplyModal = ({ isOpen, onClose }: ApplyModalProps) => {
       case 5:
         return formData.creditScore !== "";
       case 6:
-        return formData.companyName.trim() !== "";
+        return formData.companyName.trim() !== "" && 
+               formData.companyAddress.trim() !== "" && 
+               formData.ein.trim() !== "" && 
+               formData.companyEmail.trim() !== "" && 
+               formData.companyPhone.trim() !== "";
       case 7:
         return (
           formData.firstName.trim() !== "" &&
@@ -363,19 +432,74 @@ const ApplyModal = ({ isOpen, onClose }: ApplyModalProps) => {
             </div>
           )}
 
-          {/* Step 6: Company Name */}
+          {/* Step 6: Company Information */}
           {currentStep === 6 && (
             <div>
               <h2 className="text-2xl font-bold text-primary mb-6 font-heading">
-                What is the name of your company?
+                Company Information
               </h2>
-              <input
-                type="text"
-                value={formData.companyName}
-                onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                className="form-input text-lg"
-                placeholder="Your Company Name"
-              />
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Company Name *
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.companyName}
+                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                    className="form-input"
+                    placeholder="Your Company Name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Company Address *
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.companyAddress}
+                    onChange={(e) => setFormData({ ...formData, companyAddress: e.target.value })}
+                    className="form-input"
+                    placeholder="123 Main St, City, State, ZIP"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    EIN (Employer Identification Number) *
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.ein}
+                    onChange={(e) => setFormData({ ...formData, ein: e.target.value })}
+                    className="form-input"
+                    placeholder="XX-XXXXXXX"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    value={formData.companyEmail}
+                    onChange={(e) => setFormData({ ...formData, companyEmail: e.target.value })}
+                    className="form-input"
+                    placeholder="company@example.com"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    value={formData.companyPhone}
+                    onChange={(e) => setFormData({ ...formData, companyPhone: e.target.value })}
+                    className="form-input"
+                    placeholder="(555) 123-4567"
+                  />
+                </div>
+              </div>
             </div>
           )}
 

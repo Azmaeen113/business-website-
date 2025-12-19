@@ -1,4 +1,4 @@
-import heroBg from "@/assets/businessman-showing-changes-report.jpg";
+import heroBg from "@/assets/222.png";
 
 interface HeroProps {
   onApplyClick: () => void;
@@ -15,9 +15,6 @@ const Hero = ({ onApplyClick }: HeroProps) => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
-      
-      {/* Overlay */}
-      <div className="absolute inset-0 hero-overlay" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-primary-foreground pt-20">
