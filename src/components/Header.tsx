@@ -37,7 +37,7 @@ const Header = ({ onApplyClick }: HeaderProps) => {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <a href="#home" className="flex items-center">
-          <img src={logo} alt="Goldrock Funding" className="h-14 md:h-16 w-auto" />
+          <img src={logo} alt="Goldrock Funding" className="h-20 md:h-24 w-auto" />
         </a>
 
         {/* Desktop Navigation */}

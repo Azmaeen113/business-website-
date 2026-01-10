@@ -12,6 +12,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ApplyModal from "@/components/ApplyModal";
 import { Helmet } from "react-helmet-async";
+import sponsorshipImage from "@/assets/google sponsorship.jpg";
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,6 +43,19 @@ const Index = () => {
           <BankSaidNo onApplyClick={openModal} />
           <FAQ />
           <Contact />
+          
+          {/* Sponsorship Section */}
+          <section className="py-12 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-5xl mx-auto">
+                <img 
+                  src={sponsorshipImage} 
+                  alt="Google Sponsorship" 
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+            </div>
+          </section>
         </main>
         <Footer />
         <ApplyModal isOpen={isModalOpen} onClose={closeModal} />

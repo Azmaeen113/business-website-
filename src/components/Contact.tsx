@@ -20,11 +20,33 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // Prepare email body
+    const emailBody = `
+NEW CONTACT MESSAGE
+===================
+
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+
+Message:
+${formData.message}
+    `.trim();
+
+    // Create mailto link
+    const subject = encodeURIComponent(`New Contact Message from ${formData.name}`);
+    const body = encodeURIComponent(emailBody);
+    const mailtoLink = `mailto:Info@GoldrockFunding.com?subject=${subject}&body=${body}`;
+    
+    // Open default email client
+    window.location.href = mailtoLink;
+
+    // Small delay to ensure mailto opens
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
       title: "Message sent!",
-      description: "We'll get back to you as soon as possible.",
+      description: "Your email client has been opened. Please send the email to complete your message.",
     });
 
     setFormData({ name: "", email: "", phone: "", message: "" });
@@ -35,17 +57,17 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Address",
-      content: "123 Business Avenue, Suite 100\nNew York, NY 10001",
+      content: "8549 Wilshire Blvd\nSuite 186\nBeverly Hills CA 90211",
     },
     {
       icon: Phone,
       title: "Phone",
-      content: "(555) 123-4567",
+      content: "818-454-0977",
     },
     {
       icon: Mail,
       title: "Email",
-      content: "info@goldrockfunding.com",
+      content: "Info@GoldrockFunding.com",
     },
     {
       icon: Clock,

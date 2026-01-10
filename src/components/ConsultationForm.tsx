@@ -23,12 +23,36 @@ const ConsultationForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // Prepare email body
+    const emailBody = `
+NEW CONSULTATION REQUEST
+========================
+
+Name: ${formData.firstName} ${formData.lastName}
+Phone: ${formData.phone}
+Email: ${formData.email}
+Company Name: ${formData.companyName}
+Company Website: ${formData.companyWebsite}
+State: ${formData.state}
+
+Comments:
+${formData.comments}
+    `.trim();
+
+    // Create mailto link
+    const subject = encodeURIComponent(`New Consultation Request - ${formData.companyName}`);
+    const body = encodeURIComponent(emailBody);
+    const mailtoLink = `mailto:Info@GoldrockFunding.com?subject=${subject}&body=${body}`;
+    
+    // Open default email client
+    window.location.href = mailtoLink;
+
+    // Small delay to ensure mailto opens
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
       title: "Thank you!",
-      description: "We've received your request and will contact you shortly.",
+      description: "Your email client has been opened. Please send the email to complete your consultation request.",
     });
 
     setFormData({

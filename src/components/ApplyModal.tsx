@@ -107,7 +107,7 @@ Terms Agreed: ${formData.agreedToTerms ? 'Yes' : 'No'}
       // Create mailto link with all information
       const subject = encodeURIComponent(`New Funding Application - ${formData.companyName}`);
       const body = encodeURIComponent(emailBody);
-      const mailtoLink = `mailto:Loans@GoldRockFunding.com?subject=${subject}&body=${body}`;
+      const mailtoLink = `mailto:Info@GoldrockFunding.com?subject=${subject}&body=${body}`;
       
       // Open default email client
       window.location.href = mailtoLink;
