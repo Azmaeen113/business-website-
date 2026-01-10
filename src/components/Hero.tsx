@@ -12,8 +12,8 @@ const Hero = ({ onApplyClick }: HeroProps) => {
     >
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
+        className="absolute inset-0 bg-cover bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})`, backgroundPosition: 'center 20%' }}
       />
 
       {/* Content */}
