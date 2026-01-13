@@ -59,6 +59,36 @@ const Index = () => {
         </main>
         <Footer />
         <ApplyModal isOpen={isModalOpen} onClose={closeModal} />
+          {/* Statcounter Code */}
+          <div suppressHydrationWarning>
+            <script
+              type="text/javascript"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  var sc_project=13197783;
+                  var sc_invisible=1;
+                  var sc_security="c03bf161";
+                `
+              }}
+            />
+            <script
+              type="text/javascript"
+              src="https://www.statcounter.com/counter/counter.js"
+              async
+            />
+            <noscript>
+              <div className="statcounter">
+                <a title="Web Analytics" href="https://statcounter.com/" target="_blank">
+                  <img
+                    className="statcounter"
+                    src="https://c.statcounter.com/13197783/0/c03bf161/1/"
+                    alt="Web Analytics"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </a>
+              </div>
+            </noscript>
+          </div>
       </div>
     </>
   );
