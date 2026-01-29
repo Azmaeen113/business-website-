@@ -24,7 +24,7 @@ const Header = ({ onApplyClick }: HeaderProps) => {
     { href: "#services", label: "Solutions" },
     { href: "#process", label: "Resources" },
     { href: "#faq", label: "FAQ" },
-    { href: "#contact", label: "Contact Us" },
+    { href: "https://form.jotform.com/260141198889165", label: "CHECK ELIGIBILITY", external: true },
   ];
 
   return (
@@ -42,17 +42,34 @@ const Header = ({ onApplyClick }: HeaderProps) => {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="nav-link">
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.external ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className="nav-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <a key={link.href} href={link.href} className="nav-link">
+                {link.label}
+              </a>
+            )
+          )}
         </nav>
 
         <div className="hidden lg:block">
-          <button onClick={onApplyClick} className="btn-gold">
-            Apply Now
-          </button>
+          <a
+            href="https://www.jotform.com/sign/260280557868064/invite/01kg4710m118380f13127a3720"
+            className="btn-gold"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            APPLY NOW
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -69,25 +86,38 @@ const Header = ({ onApplyClick }: HeaderProps) => {
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-primary border-t border-primary-foreground/10">
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="nav-link py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
-            <button
-              onClick={() => {
-                onApplyClick();
-                setIsMobileMenuOpen(false);
-              }}
+            {navLinks.map((link) =>
+              link.external ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="nav-link py-2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="nav-link py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              )
+            )}
+            <a
+              href="https://www.jotform.com/sign/260280557868064/invite/01kg4710m118380f13127a3720"
               className="btn-gold mt-2"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
-              Apply Now
-            </button>
+              APPLY NOW
+            </a>
           </nav>
         </div>
       )}

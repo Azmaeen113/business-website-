@@ -26,11 +26,21 @@ const Hero = ({ onApplyClick }: HeroProps) => {
           We have a simple hassle-free funding process with the working capital support you need to grow your business.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
-          <button onClick={onApplyClick} className="btn-primary">
+          <a
+            href="https://www.jotform.com/sign/260280557868064/invite/01kg4710m118380f13127a3720"
+            className="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             APPLY NOW
-          </button>
-          <a href="#contact" className="btn-outline">
-            CONTACT US
+          </a>
+          <a
+            href="https://form.jotform.com/260141198889165"
+            className="btn-outline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            CHECK ELIGIBILITY
           </a>
         </div>
       </div>

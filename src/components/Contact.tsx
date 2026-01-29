@@ -80,9 +80,9 @@ ${formData.message}
     <section id="contact" className="py-20 bg-muted">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <span className="section-subtitle">Get In Touch</span>
+          <span className="section-subtitle">Check Eligibility</span>
           <h2 className="section-title mt-2">
-            CONTACT <span className="text-accent">US</span>
+            CHECK <span className="text-accent">ELIGIBILITY</span>
           </h2>
         </div>
 

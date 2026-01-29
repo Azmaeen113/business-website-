@@ -16,7 +16,8 @@ const Footer = () => {
     { href: "#about", label: "About Us" },
     { href: "#services", label: "Services" },
     { href: "#faq", label: "FAQ" },
-    { href: "#contact", label: "Contact" },
+    { href: "https://form.jotform.com/260141198889165", label: "CHECK ELIGIBILITY", external: true },
+    { href: "https://www.jotform.com/sign/260280557868064/invite/01kg4710m118380f13127a3720", label: "APPLY NOW", external: true },
   ];
 
   return (
@@ -38,12 +39,23 @@ const Footer = () => {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-primary-foreground/70 hover:text-gold transition-colors duration-300 text-sm"
-                  >
-                    {link.label}
-                  </a>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      className="text-primary-foreground/70 hover:text-gold transition-colors duration-300 text-sm"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-primary-foreground/70 hover:text-gold transition-colors duration-300 text-sm"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
